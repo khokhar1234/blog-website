@@ -1,0 +1,3724 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Luxora — AI Blogging Platform</title>
+
+<meta name="description" content="Luxora is a modern AI-powered blogging platform.">
+<meta name="theme-color" content="#111827">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root{
+    --primary:#111827;
+    --secondary:#8b5cf6;
+    --secondary2:#6366f1;
+    --accent:#f59e0b;
+
+    --bg:#f7f7fb;
+    --card:#ffffff;
+    --text:#171717;
+    --muted:#6b7280;
+    --border:#e5e7eb;
+
+    --header:rgba(17,24,39,.94);
+    --shadow:0 15px 40px rgba(0,0,0,.08);
+    --radius:18px;
+}
+
+.dark{
+    --bg:#0b0d12;
+    --card:#141821;
+    --text:#f4f4f5;
+    --muted:#9ca3af;
+    --border:#272d38;
+    --header:rgba(10,12,17,.96);
+    --shadow:0 15px 40px rgba(0,0,0,.35);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    transition:.3s;
+}
+
+button,
+input,
+textarea,
+select{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+.container{
+    width:min(1180px,92%);
+    margin:auto;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:var(--header);
+    backdrop-filter:blur(15px);
+    color:white;
+    box-shadow:0 5px 25px rgba(0,0,0,.12);
+}
+
+.nav{
+    min-height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    font-family:'Playfair Display',serif;
+    font-size:30px;
+    font-weight:700;
+    letter-spacing:.5px;
+}
+
+.logo span{
+    color:#a78bfa;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:28px;
+    list-style:none;
+}
+
+.nav-links a{
+    color:#fff;
+    font-size:14px;
+    font-weight:500;
+    opacity:.9;
+}
+
+.nav-links a:hover{
+    color:#c4b5fd;
+}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.icon-btn{
+    width:42px;
+    height:42px;
+    border:1px solid rgba(255,255,255,.2);
+    background:transparent;
+    color:#fff;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+}
+
+.icon-btn:hover{
+    background:rgba(255,255,255,.1);
+}
+
+.mobile-menu{
+    display:none;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn{
+    border:0;
+    padding:12px 19px;
+    border-radius:10px;
+    font-weight:600;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:.25s;
+}
+
+.btn-primary{
+    color:white;
+    background:linear-gradient(135deg,var(--secondary),var(--secondary2));
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(99,102,241,.3);
+}
+
+.btn-dark{
+    background:#111827;
+    color:#fff;
+}
+
+.btn-light{
+    background:var(--card);
+    color:var(--text);
+    border:1px solid var(--border);
+}
+
+.btn-danger{
+    background:#ef4444;
+    color:#fff;
+}
+
+.btn-success{
+    background:#10b981;
+    color:#fff;
+}
+
+.btn-small{
+    padding:8px 12px;
+    font-size:13px;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:650px;
+    display:flex;
+    align-items:center;
+    text-align:center;
+    color:#fff;
+
+    background:
+        linear-gradient(rgba(10,10,20,.72),rgba(10,10,20,.88)),
+        url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1800&q=85");
+
+    background-size:cover;
+    background-position:center;
+}
+
+.hero-content{
+    max-width:850px;
+    margin:auto;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 15px;
+    border-radius:50px;
+    background:rgba(139,92,246,.18);
+    border:1px solid rgba(167,139,250,.4);
+    color:#ddd6fe;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:22px;
+}
+
+.hero h1{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(42px,7vw,78px);
+    line-height:1.05;
+    margin-bottom:25px;
+}
+
+.gradient-text{
+    background:linear-gradient(90deg,#c4b5fd,#f0abfc,#f9a8d4);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    max-width:700px;
+    margin:auto auto 32px;
+    color:#d1d5db;
+    font-size:18px;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.hero-stats{
+    margin-top:55px;
+    display:flex;
+    justify-content:center;
+    gap:55px;
+    flex-wrap:wrap;
+}
+
+.stat strong{
+    display:block;
+    font-size:28px;
+}
+
+.stat span{
+    color:#9ca3af;
+    font-size:13px;
+}
+
+/* ================= SECTION ================= */
+
+section{
+    padding:85px 0;
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:20px;
+    margin-bottom:35px;
+}
+
+.section-head.center{
+    display:block;
+    text-align:center;
+}
+
+.section-title{
+    font-family:'Playfair Display',serif;
+    font-size:42px;
+    line-height:1.2;
+}
+
+.section-subtitle{
+    color:var(--muted);
+    margin-top:10px;
+}
+
+.divider{
+    width:70px;
+    height:4px;
+    border-radius:10px;
+    background:linear-gradient(90deg,var(--secondary),#ec4899);
+    margin:15px auto 0;
+}
+
+/* ================= FEATURES ================= */
+
+.features-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.feature-card{
+    padding:32px;
+    border:1px solid var(--border);
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    transition:.3s;
+}
+
+.feature-card:hover{
+    transform:translateY(-7px);
+}
+
+.feature-icon{
+    width:58px;
+    height:58px;
+    display:grid;
+    place-items:center;
+    border-radius:16px;
+    background:rgba(139,92,246,.12);
+    color:#8b5cf6;
+    font-size:24px;
+    margin-bottom:22px;
+}
+
+.feature-card h3{
+    margin-bottom:10px;
+}
+
+.feature-card p{
+    color:var(--muted);
+}
+
+/* ================= BLOGS ================= */
+
+.blog-toolbar{
+    display:flex;
+    gap:12px;
+    margin-bottom:30px;
+}
+
+.search-box{
+    flex:1;
+    position:relative;
+}
+
+.search-box i{
+    position:absolute;
+    left:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:var(--muted);
+}
+
+.search-box input{
+    width:100%;
+    padding:14px 15px 14px 45px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    outline:none;
+}
+
+.search-box input:focus{
+    border-color:var(--secondary);
+}
+
+.category-select{
+    padding:0 15px;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    border-radius:12px;
+}
+
+.blog-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.blog-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    transition:.3s;
+}
+
+.blog-card:hover{
+    transform:translateY(-7px);
+}
+
+.blog-image{
+    height:220px;
+    position:relative;
+    overflow:hidden;
+}
+
+.blog-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.blog-card:hover .blog-image img{
+    transform:scale(1.06);
+}
+
+.blog-category{
+    position:absolute;
+    left:15px;
+    top:15px;
+    padding:6px 11px;
+    border-radius:30px;
+    background:rgba(17,24,39,.8);
+    color:#fff;
+    font-size:11px;
+    font-weight:600;
+}
+
+.blog-content{
+    padding:24px;
+}
+
+.blog-meta{
+    display:flex;
+    justify-content:space-between;
+    color:var(--muted);
+    font-size:12px;
+    margin-bottom:10px;
+}
+
+.blog-title{
+    font-family:'Playfair Display',serif;
+    font-size:23px;
+    line-height:1.25;
+    margin-bottom:10px;
+}
+
+.blog-excerpt{
+    color:var(--muted);
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+.blog-footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-top:1px solid var(--border);
+    padding-top:15px;
+}
+
+.author{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.avatar{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    color:white;
+    background:linear-gradient(135deg,#8b5cf6,#ec4899);
+    font-size:12px;
+}
+
+.card-actions{
+    display:flex;
+    gap:8px;
+}
+
+.like-btn{
+    border:0;
+    background:none;
+    color:var(--muted);
+}
+
+.like-btn.liked{
+    color:#ef4444;
+}
+
+/* ================= AI SECTION ================= */
+
+.ai-section{
+    background:
+        radial-gradient(circle at 10% 20%,rgba(139,92,246,.18),transparent 30%),
+        radial-gradient(circle at 90% 80%,rgba(236,72,153,.12),transparent 30%),
+        var(--card);
+}
+
+.ai-box{
+    max-width:900px;
+    margin:auto;
+    padding:35px;
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:25px;
+    box-shadow:var(--shadow);
+}
+
+.ai-header{
+    display:flex;
+    gap:18px;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.ai-logo{
+    width:58px;
+    height:58px;
+    border-radius:16px;
+    display:grid;
+    place-items:center;
+    background:linear-gradient(135deg,#8b5cf6,#ec4899);
+    color:#fff;
+    font-size:25px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+.form-control{
+    width:100%;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:13px 15px;
+    background:var(--card);
+    color:var(--text);
+    outline:none;
+}
+
+textarea.form-control{
+    min-height:130px;
+    resize:vertical;
+}
+
+.form-control:focus{
+    border-color:var(--secondary);
+}
+
+.ai-output{
+    display:none;
+    margin-top:25px;
+    padding:25px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+}
+
+.ai-output.show{
+    display:block;
+}
+
+.output-title{
+    font-family:'Playfair Display',serif;
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.output-content{
+    white-space:pre-line;
+    color:var(--muted);
+}
+
+/* ================= ABOUT ================= */
+
+.about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.about-image{
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+}
+
+.about-image img{
+    width:100%;
+    height:480px;
+    object-fit:cover;
+}
+
+.about-content h2{
+    font-family:'Playfair Display',serif;
+    font-size:45px;
+    margin-bottom:18px;
+}
+
+.about-content p{
+    color:var(--muted);
+    margin-bottom:18px;
+}
+
+.check-list{
+    list-style:none;
+    display:grid;
+    gap:12px;
+    margin:25px 0;
+}
+
+.check-list li{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.check-list i{
+    color:#10b981;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    z-index:3000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(650px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:var(--card);
+    color:var(--text);
+    border-radius:20px;
+    padding:30px;
+    position:relative;
+    box-shadow:0 30px 80px rgba(0,0,0,.4);
+}
+
+.close-modal{
+    position:absolute;
+    right:18px;
+    top:18px;
+    width:38px;
+    height:38px;
+    border:0;
+    border-radius:50%;
+    background:var(--bg);
+    color:var(--text);
+}
+
+/* ================= BLOG READER ================= */
+
+.reader{
+    width:min(900px,100%);
+}
+
+.reader-image{
+    width:100%;
+    height:330px;
+    object-fit:cover;
+    border-radius:15px;
+    margin-bottom:25px;
+}
+
+.reader-title{
+    font-family:'Playfair Display',serif;
+    font-size:42px;
+    line-height:1.15;
+    margin-bottom:12px;
+}
+
+.reader-meta{
+    color:var(--muted);
+    margin-bottom:25px;
+}
+
+.reader-content{
+    white-space:pre-line;
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.9;
+}
+
+.comments{
+    margin-top:35px;
+    border-top:1px solid var(--border);
+    padding-top:25px;
+}
+
+.comment{
+    padding:15px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    margin-bottom:10px;
+}
+
+.comment strong{
+    display:block;
+    margin-bottom:4px;
+}
+
+.comment small{
+    color:var(--muted);
+}
+
+/* ================= AUTH ================= */
+
+.auth-box{
+    width:min(440px,100%);
+}
+
+.auth-tabs{
+    display:flex;
+    gap:5px;
+    background:var(--bg);
+    padding:5px;
+    border-radius:12px;
+    margin-bottom:25px;
+}
+
+.auth-tab{
+    flex:1;
+    border:0;
+    padding:11px;
+    border-radius:8px;
+    background:transparent;
+    color:var(--muted);
+}
+
+.auth-tab.active{
+    background:var(--card);
+    color:var(--text);
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.auth-form{
+    display:none;
+}
+
+.auth-form.active{
+    display:block;
+}
+
+/* ================= ADMIN ================= */
+
+.admin-panel{
+    display:none;
+    padding:80px 0;
+}
+
+.admin-panel.show{
+    display:block;
+}
+
+.admin-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.admin-title{
+    font-family:'Playfair Display',serif;
+    font-size:40px;
+}
+
+.admin-stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:30px;
+}
+
+.admin-stat{
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:24px;
+    border-radius:16px;
+}
+
+.admin-stat i{
+    color:#8b5cf6;
+    font-size:22px;
+    margin-bottom:10px;
+}
+
+.admin-stat strong{
+    display:block;
+    font-size:28px;
+}
+
+.admin-stat span{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.admin-table{
+    width:100%;
+    border-collapse:collapse;
+    background:var(--card);
+    border-radius:16px;
+    overflow:hidden;
+}
+
+.admin-table th,
+.admin-table td{
+    padding:15px;
+    text-align:left;
+    border-bottom:1px solid var(--border);
+}
+
+.admin-table th{
+    font-size:13px;
+    color:var(--muted);
+}
+
+.admin-table td{
+    font-size:13px;
+}
+
+.admin-actions{
+    display:flex;
+    gap:6px;
+}
+
+/* ================= TOAST ================= */
+
+.toast-container{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:5000;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.toast{
+    min-width:280px;
+    padding:15px 18px;
+    border-radius:12px;
+    background:#111827;
+    color:white;
+    box-shadow:0 15px 35px rgba(0,0,0,.3);
+    display:flex;
+    gap:10px;
+    align-items:center;
+    animation:slideIn .3s ease;
+}
+
+@keyframes slideIn{
+    from{
+        opacity:0;
+        transform:translateX(50px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+/* ================= LOADER ================= */
+
+.loader{
+    width:20px;
+    height:20px;
+    border:3px solid rgba(255,255,255,.3);
+    border-top-color:white;
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+    to{transform:rotate(360deg)}
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#0b0d12;
+    color:#fff;
+    padding:60px 0 25px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:40px;
+    margin-bottom:45px;
+}
+
+.footer-brand p{
+    color:#9ca3af;
+    max-width:400px;
+    margin-top:15px;
+}
+
+.footer-col h4{
+    margin-bottom:15px;
+}
+
+.footer-col a{
+    display:block;
+    color:#9ca3af;
+    margin-bottom:10px;
+    font-size:14px;
+}
+
+.footer-col a:hover{
+    color:white;
+}
+
+.socials{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
+
+.social{
+    width:38px;
+    height:38px;
+    display:grid;
+    place-items:center;
+    border:1px solid #30343d;
+    border-radius:50%;
+}
+
+.copyright{
+    padding-top:20px;
+    border-top:1px solid #262a32;
+    text-align:center;
+    color:#6b7280;
+    font-size:13px;
+}
+
+/* ================= EMPTY ================= */
+
+.empty{
+    grid-column:1/-1;
+    text-align:center;
+    padding:60px 20px;
+    color:var(--muted);
+}
+
+.empty i{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:950px){
+
+    .features-grid,
+    .blog-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .about-grid{
+        grid-template-columns:1fr;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .admin-stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:700px){
+
+    .nav-links{
+        display:none;
+        position:absolute;
+        top:76px;
+        left:0;
+        right:0;
+        padding:20px;
+        background:#111827;
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .nav-links.show{
+        display:flex;
+    }
+
+    .mobile-menu{
+        display:grid;
+    }
+
+    .nav-actions .btn{
+        display:none;
+    }
+
+    .features-grid,
+    .blog-grid{
+        grid-template-columns:1fr;
+    }
+
+    .blog-toolbar{
+        flex-direction:column;
+    }
+
+    .category-select{
+        min-height:48px;
+    }
+
+    .hero{
+        min-height:590px;
+    }
+
+    .hero-stats{
+        gap:25px;
+    }
+
+    .section-title{
+        font-size:34px;
+    }
+
+    .about-content h2{
+        font-size:35px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .admin-header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .admin-stats{
+        grid-template-columns:1fr;
+    }
+
+    .admin-table{
+        display:block;
+        overflow-x:auto;
+        white-space:nowrap;
+    }
+
+    .reader-title{
+        font-size:32px;
+    }
+
+    .reader-image{
+        height:230px;
+    }
+
+    .ai-box{
+        padding:22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+<div class="container nav">
+
+    <a href="#" class="logo">
+        Lux<span>ora</span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#blogs">Blogs</a></li>
+        <li><a href="#ai">AI Writer</a></li>
+        <li><a href="#about">About</a></li>
+    </ul>
+
+    <div class="nav-actions">
+
+        <button class="icon-btn" id="themeBtn" title="Toggle theme">
+            <i class="fas fa-moon"></i>
+        </button>
+
+        <button class="btn btn-primary" id="loginBtn">
+            <i class="fas fa-user"></i>
+            Login
+        </button>
+
+        <button class="icon-btn mobile-menu" id="mobileBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+
+    </div>
+
+</div>
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+<div class="container hero-content">
+
+    <div class="badge">
+        <i class="fas fa-sparkles"></i>
+        AI-Powered Publishing Platform
+    </div>
+
+    <h1>
+        Ideas That Become
+        <span class="gradient-text">Stories.</span>
+    </h1>
+
+    <p>
+        Discover inspiring stories, create beautiful articles,
+        and transform your ideas into professional content with
+        the power of AI.
+    </p>
+
+    <div class="hero-buttons">
+
+        <a href="#blogs" class="btn btn-primary">
+            <i class="fas fa-book-open"></i>
+            Explore Blogs
+        </a>
+
+        <a href="#ai" class="btn btn-light">
+            <i class="fas fa-wand-magic-sparkles"></i>
+            Try AI Writer
+        </a>
+
+    </div>
+
+    <div class="hero-stats">
+
+        <div class="stat">
+            <strong id="heroBlogs">0</strong>
+            <span>Published Blogs</span>
+        </div>
+
+        <div class="stat">
+            <strong id="heroUsers">0</strong>
+            <span>Readers</span>
+        </div>
+
+        <div class="stat">
+            <strong>24/7</strong>
+            <span>AI Assistance</span>
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section>
+
+<div class="container">
+
+    <div class="section-head center">
+
+        <h2 class="section-title">
+            Everything You Need
+        </h2>
+
+        <p class="section-subtitle">
+            A complete platform for modern writers and readers.
+        </p>
+
+        <div class="divider"></div>
+
+    </div>
+
+
+    <div class="features-grid">
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="fas fa-robot"></i>
+            </div>
+
+            <h3>AI Writing Assistant</h3>
+
+            <p>
+                Generate professional blog ideas, titles,
+                introductions and complete article drafts.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="fas fa-pen-nib"></i>
+            </div>
+
+            <h3>Beautiful Publishing</h3>
+
+            <p>
+                Turn your thoughts into elegant,
+                responsive and readable blog posts.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="fas fa-users"></i>
+            </div>
+
+            <h3>Community</h3>
+
+            <p>
+                Allow readers to interact through likes,
+                comments and discussions.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+<!-- ================= BLOGS ================= -->
+
+<section id="blogs">
+
+<div class="container">
+
+    <div class="section-head">
+
+        <div>
+            <h2 class="section-title">
+                Latest Stories
+            </h2>
+
+            <p class="section-subtitle">
+                Explore ideas from the Luxora community.
+            </p>
+        </div>
+
+        <button class="btn btn-primary" onclick="openAuth()">
+            <i class="fas fa-plus"></i>
+            Write a Blog
+        </button>
+
+    </div>
+
+
+    <div class="blog-toolbar">
+
+        <div class="search-box">
+
+            <i class="fas fa-search"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search blogs..."
+            >
+
+        </div>
+
+
+        <select id="categoryFilter" class="category-select">
+
+            <option value="all">All Categories</option>
+            <option value="Technology">Technology</option>
+            <option value="AI">AI</option>
+            <option value="Business">Business</option>
+            <option value="Lifestyle">Lifestyle</option>
+            <option value="Education">Education</option>
+
+        </select>
+
+    </div>
+
+
+    <div class="blog-grid" id="blogGrid"></div>
+
+</div>
+</section>
+
+
+<!-- ================= AI WRITER ================= -->
+
+<section class="ai-section" id="ai">
+
+<div class="container">
+
+    <div class="section-head center">
+
+        <h2 class="section-title">
+            AI Blog Writer
+        </h2>
+
+        <p class="section-subtitle">
+            Turn a simple idea into a complete blog draft.
+        </p>
+
+        <div class="divider"></div>
+
+    </div>
+
+
+    <div class="ai-box">
+
+        <div class="ai-header">
+
+            <div class="ai-logo">
+                <i class="fas fa-wand-magic-sparkles"></i>
+            </div>
+
+            <div>
+                <h3>Luxora AI Writer</h3>
+                <p style="color:var(--muted);font-size:13px">
+                    Your creative writing assistant
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Blog Topic</label>
+
+            <input
+                class="form-control"
+                id="aiTopic"
+                placeholder="Example: The future of artificial intelligence"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Writing Style</label>
+
+            <select class="form-control" id="aiStyle">
+
+                <option value="professional">
+                    Professional
+                </option>
+
+                <option value="friendly">
+                    Friendly
+                </option>
+
+                <option value="creative">
+                    Creative
+                </option>
+
+                <option value="educational">
+                    Educational
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Additional Instructions</label>
+
+            <textarea
+                class="form-control"
+                id="aiInstructions"
+                placeholder="Add any specific requirements..."
+            ></textarea>
+
+        </div>
+
+
+        <button class="btn btn-primary" id="generateBtn">
+
+            <i class="fas fa-sparkles"></i>
+            Generate Blog
+
+        </button>
+
+
+        <div class="ai-output" id="aiOutput">
+
+            <h3 class="output-title" id="generatedTitle">
+                Generated Title
+            </h3>
+
+            <div class="output-content" id="generatedContent"></div>
+
+            <br>
+
+            <button
+                class="btn btn-success"
+                onclick="publishGeneratedBlog()"
+            >
+                <i class="fas fa-paper-plane"></i>
+                Publish This Blog
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about">
+
+<div class="container about-grid">
+
+    <div class="about-image">
+
+        <img
+            src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1000&q=85"
+            alt="Writing workspace"
+        >
+
+    </div>
+
+
+    <div class="about-content">
+
+        <div class="badge" style="color:#7c3aed;background:rgba(139,92,246,.1)">
+            <i class="fas fa-gem"></i>
+            About Luxora
+        </div>
+
+        <h2>
+            Where Creativity Meets Technology
+        </h2>
+
+        <p>
+            Luxora is designed for writers, creators, students,
+            entrepreneurs and curious minds who want a beautiful
+            place to share ideas.
+        </p>
+
+        <p>
+            With AI-assisted writing tools and a modern publishing
+            experience, creating useful content becomes easier.
+        </p>
+
+        <ul class="check-list">
+
+            <li>
+                <i class="fas fa-circle-check"></i>
+                AI-assisted content creation
+            </li>
+
+            <li>
+                <i class="fas fa-circle-check"></i>
+                Modern responsive design
+            </li>
+
+            <li>
+                <i class="fas fa-circle-check"></i>
+                Community comments and likes
+            </li>
+
+            <li>
+                <i class="fas fa-circle-check"></i>
+                Personal user accounts
+            </li>
+
+        </ul>
+
+        <a href="#ai" class="btn btn-primary">
+            Start Creating
+        </a>
+
+    </div>
+
+</div>
+</section>
+
+
+<!-- ================= ADMIN ================= -->
+
+<section class="admin-panel" id="adminPanel">
+
+<div class="container">
+
+    <div class="admin-header">
+
+        <div>
+
+            <h2 class="admin-title">
+                Admin Dashboard
+            </h2>
+
+            <p style="color:var(--muted)">
+                Manage Luxora content and users.
+            </p>
+
+        </div>
+
+        <button class="btn btn-danger" onclick="logoutAdmin()">
+            <i class="fas fa-right-from-bracket"></i>
+            Exit Admin
+        </button>
+
+    </div>
+
+
+    <div class="admin-stats">
+
+        <div class="admin-stat">
+
+            <i class="fas fa-newspaper"></i>
+
+            <strong id="adminBlogs">0</strong>
+
+            <span>Total Blogs</span>
+
+        </div>
+
+
+        <div class="admin-stat">
+
+            <i class="fas fa-users"></i>
+
+            <strong id="adminUsers">0</strong>
+
+            <span>Registered Users</span>
+
+        </div>
+
+
+        <div class="admin-stat">
+
+            <i class="fas fa-heart"></i>
+
+            <strong id="adminLikes">0</strong>
+
+            <span>Total Likes</span>
+
+        </div>
+
+
+        <div class="admin-stat">
+
+            <i class="fas fa-comments"></i>
+
+            <strong id="adminComments">0</strong>
+
+            <span>Total Comments</span>
+
+        </div>
+
+    </div>
+
+
+    <div style="margin-bottom:20px">
+
+        <button
+            class="btn btn-primary"
+            onclick="openCreateBlog()"
+        >
+            <i class="fas fa-plus"></i>
+            Create New Blog
+        </button>
+
+    </div>
+
+
+    <div style="overflow-x:auto">
+
+        <table class="admin-table">
+
+            <thead>
+
+                <tr>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Author</th>
+                    <th>Likes</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="adminTableBody"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<div class="container">
+
+    <div class="footer-grid">
+
+        <div class="footer-brand">
+
+            <div class="logo">
+                Lux<span>ora</span>
+            </div>
+
+            <p>
+                A modern AI-powered blogging platform
+                built for people who love ideas,
+                stories and creativity.
+            </p>
+
+            <div class="socials">
+
+                <a class="social" href="#">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+                <a class="social" href="#">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+                <a class="social" href="#">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+
+                <a class="social" href="#">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-col">
+
+            <h4>Platform</h4>
+
+            <a href="#blogs">Blogs</a>
+            <a href="#ai">AI Writer</a>
+            <a href="#about">About</a>
+
+        </div>
+
+
+        <div class="footer-col">
+
+            <h4>Community</h4>
+
+            <a href="#">Writers</a>
+            <a href="#">Guidelines</a>
+            <a href="#">Community</a>
+
+        </div>
+
+
+        <div class="footer-col">
+
+            <h4>Support</h4>
+
+            <a href="#">Help Center</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+        © <span id="year"></span> Luxora. All rights reserved.
+    </div>
+
+</div>
+</footer>
+
+
+<!-- ================= AUTH MODAL ================= -->
+
+<div class="modal" id="authModal">
+
+<div class="modal-box auth-box">
+
+    <button class="close-modal" onclick="closeModal('authModal')">
+        <i class="fas fa-xmark"></i>
+    </button>
+
+
+    <h2 style="font-family:'Playfair Display';font-size:32px;margin-bottom:8px">
+        Welcome to Luxora
+    </h2>
+
+    <p style="color:var(--muted);margin-bottom:20px">
+        Sign in or create your account.
+    </p>
+
+
+    <div class="auth-tabs">
+
+        <button class="auth-tab active" onclick="switchAuth('login')">
+            Login
+        </button>
+
+        <button class="auth-tab" onclick="switchAuth('register')">
+            Register
+        </button>
+
+    </div>
+
+
+    <!-- LOGIN -->
+
+    <form class="auth-form active" id="loginForm">
+
+        <div class="form-group">
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                id="loginEmail"
+                class="form-control"
+                required
+                placeholder="you@example.com"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="loginPassword"
+                class="form-control"
+                required
+                placeholder="••••••••"
+            >
+
+        </div>
+
+
+        <button class="btn btn-primary" style="width:100%">
+            Login
+        </button>
+
+        <p style="font-size:12px;color:var(--muted);margin-top:15px">
+            Demo admin: admin@luxora.com
+        </p>
+
+    </form>
+
+
+    <!-- REGISTER -->
+
+    <form class="auth-form" id="registerForm">
+
+        <div class="form-group">
+
+            <label>Full Name</label>
+
+            <input
+                type="text"
+                id="registerName"
+                class="form-control"
+                required
+                placeholder="Your name"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                id="registerEmail"
+                class="form-control"
+                required
+                placeholder="you@example.com"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="registerPassword"
+                class="form-control"
+                required
+                minlength="4"
+                placeholder="Create password"
+            >
+
+        </div>
+
+
+        <button class="btn btn-primary" style="width:100%">
+            Create Account
+        </button>
+
+    </form>
+
+</div>
+</div>
+
+
+<!-- ================= BLOG READER MODAL ================= -->
+
+<div class="modal" id="readerModal">
+
+<div class="modal-box reader">
+
+    <button class="close-modal" onclick="closeModal('readerModal')">
+        <i class="fas fa-xmark"></i>
+    </button>
+
+    <img id="readerImage" class="reader-image">
+
+    <h1 class="reader-title" id="readerTitle"></h1>
+
+    <div class="reader-meta" id="readerMeta"></div>
+
+    <div class="reader-content" id="readerContent"></div>
+
+
+    <div class="comments">
+
+        <h3 style="margin-bottom:15px">
+            Comments
+        </h3>
+
+        <div id="commentsList"></div>
+
+
+        <div style="margin-top:20px">
+
+            <textarea
+                id="commentInput"
+                class="form-control"
+                placeholder="Write a comment..."
+            ></textarea>
+
+            <button
+                class="btn btn-primary"
+                style="margin-top:10px"
+                onclick="addComment()"
+            >
+                <i class="fas fa-paper-plane"></i>
+                Comment
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+</div>
+
+
+<!-- ================= CREATE BLOG MODAL ================= -->
+
+<div class="modal" id="createBlogModal">
+
+<div class="modal-box">
+
+    <button class="close-modal" onclick="closeModal('createBlogModal')">
+        <i class="fas fa-xmark"></i>
+    </button>
+
+
+    <h2 style="font-family:'Playfair Display';font-size:32px;margin-bottom:20px">
+        Create Blog
+    </h2>
+
+
+    <form id="createBlogForm">
+
+        <div class="form-group">
+
+            <label>Blog Title</label>
+
+            <input
+                id="blogTitle"
+                class="form-control"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Category</label>
+
+            <select id="blogCategory" class="form-control">
+
+                <option>Technology</option>
+                <option>AI</option>
+                <option>Business</option>
+                <option>Lifestyle</option>
+                <option>Education</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Image URL</label>
+
+            <input
+                id="blogImage"
+                class="form-control"
+                placeholder="https://..."
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Blog Content</label>
+
+            <textarea
+                id="blogContent"
+                class="form-control"
+                style="min-height:250px"
+                required
+            ></textarea>
+
+        </div>
+
+
+        <button class="btn btn-primary">
+            <i class="fas fa-paper-plane"></i>
+            Publish Blog
+        </button>
+
+    </form>
+
+</div>
+</div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div class="toast-container" id="toastContainer"></div>
+
+
+<script>
+
+/* =========================================================
+   LUXORA APPLICATION
+========================================================= */
+
+
+/* ================= DEFAULT BLOGS ================= */
+
+const defaultBlogs = [
+
+{
+    id:1,
+    title:"The Future of Artificial Intelligence",
+    category:"AI",
+    author:"Luxora Team",
+    date:"September 25, 2026",
+    image:"https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=85",
+    excerpt:"Discover how artificial intelligence is changing the way we work, learn and create.",
+    content:`Artificial intelligence is rapidly becoming one of the most important technologies of our time.
+
+From intelligent assistants to automated business systems, AI is changing how people interact with technology.
+
+The next generation of AI systems will increasingly focus on personalization, automation and collaboration.
+
+For students, developers and businesses, learning how to use AI effectively can create new opportunities.
+
+The future of AI is not simply about replacing human work. It is also about creating tools that help people solve problems faster and explore new ideas.
+
+As the technology continues to evolve, responsible development, privacy and security will remain important considerations.`,
+    likes:24,
+    comments:[
+        {
+            name:"Ahmed",
+            text:"Very interesting article!",
+            date:"Today"
+        }
+    ]
+},
+
+{
+    id:2,
+    title:"Building a Successful Digital Career",
+    category:"Education",
+    author:"Sarah Khan",
+    date:"September 22, 2026",
+    image:"https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=85",
+    excerpt:"Practical lessons for students who want to build a career in technology.",
+    content:`Building a career in technology requires consistency, curiosity and practical experience.
+
+Students can start by learning one technology deeply instead of trying to master everything at once.
+
+Projects are particularly valuable because they demonstrate how theoretical knowledge can be applied to real problems.
+
+A strong portfolio can include websites, applications, automation tools, APIs and other useful software.
+
+Networking is another important part of career development. Connecting with developers, companies and communities can create opportunities that may not be visible through traditional applications.
+
+Most importantly, keep learning and building.`,
+    likes:18,
+    comments:[]
+},
+
+{
+    id:3,
+    title:"How Technology Is Transforming Business",
+    category:"Business",
+    author:"Daniel Smith",
+    date:"September 19, 2026",
+    image:"https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85",
+    excerpt:"Technology has become a major part of modern business strategy.",
+    content:`Technology has transformed almost every part of modern business.
+
+Companies use software for communication, customer management, analytics, marketing and operations.
+
+Cloud computing allows businesses to access powerful infrastructure without maintaining large physical systems.
+
+Automation can also reduce repetitive work and allow employees to focus on higher-value activities.
+
+However, adopting technology successfully requires planning. Organizations need to consider security, privacy, employee training and long-term maintenance.
+
+Businesses that combine technology with clear strategy can create more efficient and flexible operations.`,
+    likes:31,
+    comments:[]
+},
+
+{
+    id:4,
+    title:"The Art of Better Productivity",
+    category:"Lifestyle",
+    author:"Emma Wilson",
+    date:"September 16, 2026",
+    image:"https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=85",
+    excerpt:"Simple strategies that can help you focus on meaningful work.",
+    content:`Productivity is not about staying busy every minute.
+
+A better approach is to identify the tasks that create the most value and protect time for focused work.
+
+Start by creating a small list of priorities. Avoid filling the day with unnecessary tasks.
+
+Taking short breaks can also help maintain concentration.
+
+Digital tools can support productivity, but they should not become another source of distraction.
+
+The goal is simple: spend more time doing meaningful work and less time managing unnecessary complexity.`,
+    likes:12,
+    comments:[]
+},
+
+{
+    id:5,
+    title:"Why Developers Should Learn AI",
+    category:"Technology",
+    author:"Michael Lee",
+    date:"September 12, 2026",
+    image:"https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=85",
+    excerpt:"AI tools are becoming an important part of modern software development.",
+    content:`Modern software developers increasingly work alongside AI-powered tools.
+
+AI can help developers understand unfamiliar code, generate prototypes, identify bugs and explore possible solutions.
+
+However, developers still need fundamental programming knowledge.
+
+Understanding algorithms, data structures, databases, networking and software architecture remains important.
+
+The strongest approach is to treat AI as a productivity tool while maintaining the ability to review and understand the generated work.`,
+    likes:27,
+    comments:[]
+},
+
+{
+    id:6,
+    title:"The Future of Online Learning",
+    category:"Education",
+    author:"Olivia Brown",
+    date:"September 10, 2026",
+    image:"https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&w=1200&q=85",
+    excerpt:"Online education continues to make learning more flexible and accessible.",
+    content:`Online learning has changed how students access educational resources.
+
+Learners can now access courses, tutorials, communities and documentation from almost anywhere.
+
+The flexibility of online learning is particularly useful for people who want to study while working or managing other responsibilities.
+
+AI-based educational tools can further personalize learning by providing explanations, exercises and feedback.
+
+However, successful online learning still requires discipline and a structured learning plan.`,
+    likes:16,
+    comments:[]
+}
+
+];
+
+
+/* ================= STORAGE ================= */
+
+function getBlogs(){
+
+    const saved = localStorage.getItem("luxoraBlogs");
+
+    if(saved){
+        return JSON.parse(saved);
+    }
+
+    localStorage.setItem(
+        "luxoraBlogs",
+        JSON.stringify(defaultBlogs)
+    );
+
+    return [...defaultBlogs];
+}
+
+
+function saveBlogs(blogs){
+
+    localStorage.setItem(
+        "luxoraBlogs",
+        JSON.stringify(blogs)
+    );
+
+}
+
+
+/* ================= USERS ================= */
+
+function getUsers(){
+
+    return JSON.parse(
+        localStorage.getItem("luxoraUsers") || "[]"
+    );
+
+}
+
+
+function saveUsers(users){
+
+    localStorage.setItem(
+        "luxoraUsers",
+        JSON.stringify(users)
+    );
+
+}
+
+
+/* ================= SESSION ================= */
+
+function getCurrentUser(){
+
+    return JSON.parse(
+        localStorage.getItem("luxoraCurrentUser") || "null"
+    );
+
+}
+
+
+function setCurrentUser(user){
+
+    localStorage.setItem(
+        "luxoraCurrentUser",
+        JSON.stringify(user)
+    );
+
+}
+
+
+/* ================= INITIALIZATION ================= */
+
+let blogs = getBlogs();
+
+let currentBlogId = null;
+
+let generatedBlog = null;
+
+let isAdmin = false;
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+
+renderBlogs();
+updateStats();
+updateLoginButton();
+
+
+/* ================= THEME ================= */
+
+const themeBtn =
+    document.getElementById("themeBtn");
+
+if(localStorage.getItem("luxoraTheme")==="dark"){
+
+    document.body.classList.add("dark");
+
+    themeBtn.innerHTML =
+        '<i class="fas fa-sun"></i>';
+
+}
+
+
+themeBtn.addEventListener("click",()=>{
+
+    document.body.classList.toggle("dark");
+
+    const dark =
+        document.body.classList.contains("dark");
+
+    localStorage.setItem(
+        "luxoraTheme",
+        dark ? "dark" : "light"
+    );
+
+    themeBtn.innerHTML =
+        dark
+        ? '<i class="fas fa-sun"></i>'
+        : '<i class="fas fa-moon"></i>';
+
+});
+
+
+/* ================= MOBILE MENU ================= */
+
+document
+.getElementById("mobileBtn")
+.addEventListener("click",()=>{
+
+    document
+    .getElementById("navLinks")
+    .classList.toggle("show");
+
+});
+
+
+/* ================= MODAL ================= */
+
+function openModal(id){
+
+    document
+    .getElementById(id)
+    .classList.add("show");
+
+}
+
+
+function closeModal(id){
+
+    document
+    .getElementById(id)
+    .classList.remove("show");
+
+}
+
+
+document.querySelectorAll(".modal")
+.forEach(modal=>{
+
+    modal.addEventListener("click",(e)=>{
+
+        if(e.target===modal){
+            modal.classList.remove("show");
+        }
+
+    });
+
+});
+
+
+/* ================= AUTH ================= */
+
+function openAuth(){
+
+    openModal("authModal");
+
+}
+
+
+document
+.getElementById("loginBtn")
+.addEventListener("click",openAuth);
+
+
+function switchAuth(type){
+
+    document
+    .querySelectorAll(".auth-tab")
+    .forEach(btn=>btn.classList.remove("active"));
+
+    document
+    .querySelectorAll(".auth-form")
+    .forEach(form=>form.classList.remove("active"));
+
+
+    if(type==="login"){
+
+        document
+        .querySelector(".auth-tab:nth-child(1)")
+        .classList.add("active");
+
+        document
+        .getElementById("loginForm")
+        .classList.add("active");
+
+    }else{
+
+        document
+        .querySelector(".auth-tab:nth-child(2)")
+        .classList.add("active");
+
+        document
+        .getElementById("registerForm")
+        .classList.add("active");
+
+    }
+
+}
+
+
+/* ================= REGISTER ================= */
+
+document
+.getElementById("registerForm")
+.addEventListener("submit",(e)=>{
+
+    e.preventDefault();
+
+    const name =
+        document.getElementById("registerName").value.trim();
+
+    const email =
+        document.getElementById("registerEmail").value.trim().toLowerCase();
+
+    const password =
+        document.getElementById("registerPassword").value;
+
+
+    const users = getUsers();
+
+
+    if(users.some(u=>u.email===email)){
+
+        toast(
+            "An account with this email already exists.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    users.push({
+
+        id:Date.now(),
+        name,
+        email,
+        password
+
+    });
+
+
+    saveUsers(users);
+
+    setCurrentUser({
+        name,
+        email
+    });
+
+
+    closeModal("authModal");
+
+    updateLoginButton();
+
+    toast(
+        "Account created successfully!",
+        "success"
+    );
+
+});
+
+
+/* ================= LOGIN ================= */
+
+document
+.getElementById("loginForm")
+.addEventListener("submit",(e)=>{
+
+    e.preventDefault();
+
+    const email =
+        document.getElementById("loginEmail")
+        .value.trim()
+        .toLowerCase();
+
+    const password =
+        document.getElementById("loginPassword")
+        .value;
+
+
+    /* DEMO ADMIN */
+
+    if(
+        email==="admin@luxora.com" &&
+        password==="admin123"
+    ){
+
+        isAdmin=true;
+
+        localStorage.setItem(
+            "luxoraAdmin",
+            "true"
+        );
+
+        closeModal("authModal");
+
+        showAdmin();
+
+        toast(
+            "Admin dashboard opened.",
+            "success"
+        );
+
+        return;
+
+    }
+
+
+    const users = getUsers();
+
+    const user =
+        users.find(
+            u=>u.email===email &&
+               u.password===password
+        );
+
+
+    if(!user){
+
+        toast(
+            "Invalid email or password.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    setCurrentUser({
+        name:user.name,
+        email:user.email
+    });
+
+
+    closeModal("authModal");
+
+    updateLoginButton();
+
+    toast(
+        `Welcome back, ${user.name}!`,
+        "success"
+    );
+
+});
+
+
+/* ================= LOGIN BUTTON ================= */
+
+function updateLoginButton(){
+
+    const btn =
+        document.getElementById("loginBtn");
+
+    const user =
+        getCurrentUser();
+
+
+    if(user){
+
+        btn.innerHTML =
+            `<i class="fas fa-user"></i> ${escapeHtml(user.name.split(" ")[0])}`;
+
+        btn.onclick = logoutUser;
+
+    }else{
+
+        btn.innerHTML =
+            '<i class="fas fa-user"></i> Login';
+
+        btn.onclick = openAuth;
+
+    }
+
+}
+
+
+function logoutUser(){
+
+    localStorage.removeItem("luxoraCurrentUser");
+
+    updateLoginButton();
+
+    toast(
+        "You have been logged out.",
+        "success"
+    );
+
+}
+
+
+/* ================= BLOG RENDER ================= */
+
+function renderBlogs(){
+
+    const grid =
+        document.getElementById("blogGrid");
+
+    const search =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    const category =
+        document
+        .getElementById("categoryFilter")
+        .value;
+
+
+    const filtered =
+        blogs.filter(blog=>{
+
+            const matchesSearch =
+                blog.title.toLowerCase().includes(search) ||
+                blog.excerpt.toLowerCase().includes(search) ||
+                blog.author.toLowerCase().includes(search);
+
+            const matchesCategory =
+                category==="all" ||
+                blog.category===category;
+
+            return matchesSearch && matchesCategory;
+
+        });
+
+
+    if(!filtered.length){
+
+        grid.innerHTML=`
+
+            <div class="empty">
+
+                <i class="fas fa-file-circle-xmark"></i>
+
+                <h3>No blogs found</h3>
+
+                <p>Try another search or category.</p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    grid.innerHTML =
+        filtered.map(blog=>blogCard(blog)).join("");
+
+}
+
+
+function blogCard(blog){
+
+    const liked =
+        getLikedBlogs().includes(blog.id);
+
+
+    return `
+
+    <article class="blog-card">
+
+        <div class="blog-image">
+
+            <img
+                src="${safeImage(blog.image)}"
+                alt="${escapeHtml(blog.title)}"
+                onerror="this.src='https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1000&q=80'"
+            >
+
+            <span class="blog-category">
+                ${escapeHtml(blog.category)}
+            </span>
+
+        </div>
+
+
+        <div class="blog-content">
+
+            <div class="blog-meta">
+
+                <span>
+                    <i class="far fa-calendar"></i>
+                    ${escapeHtml(blog.date)}
+                </span>
+
+                <span>
+                    ${blog.likes || 0} likes
+                </span>
+
+            </div>
+
+
+            <h3 class="blog-title">
+                ${escapeHtml(blog.title)}
+            </h3>
+
+
+            <p class="blog-excerpt">
+                ${escapeHtml(blog.excerpt)}
+            </p>
+
+
+            <div class="blog-footer">
+
+                <div class="author">
+
+                    <div class="avatar">
+                        ${getInitials(blog.author)}
+                    </div>
+
+                    ${escapeHtml(blog.author)}
+
+                </div>
+
+
+                <div class="card-actions">
+
+                    <button
+                        class="like-btn ${liked?'liked':''}"
+                        onclick="toggleLike(${blog.id})"
+                        title="Like"
+                    >
+                        <i class="${liked?'fas':'far'} fa-heart"></i>
+                        ${blog.likes || 0}
+                    </button>
+
+                    <button
+                        class="btn btn-primary btn-small"
+                        onclick="openReader(${blog.id})"
+                    >
+                        Read
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </article>
+
+    `;
+
+}
+
+
+/* ================= SEARCH ================= */
+
+document
+.getElementById("searchInput")
+.addEventListener("input",renderBlogs);
+
+document
+.getElementById("categoryFilter")
+.addEventListener("change",renderBlogs);
+
+
+/* ================= READ BLOG ================= */
+
+function openReader(id){
+
+    const blog =
+        blogs.find(b=>b.id===id);
+
+    if(!blog) return;
+
+    currentBlogId=id;
+
+    document
+    .getElementById("readerImage")
+    .src=safeImage(blog.image);
+
+    document
+    .getElementById("readerTitle")
+    .textContent=blog.title;
+
+    document
+    .getElementById("readerMeta")
+    .innerHTML=
+        `<i class="fas fa-user"></i>
+         ${escapeHtml(blog.author)}
+         &nbsp; • &nbsp;
+         ${escapeHtml(blog.date)}
+         &nbsp; • &nbsp;
+         ${escapeHtml(blog.category)}`;
+
+    document
+    .getElementById("readerContent")
+    .textContent=blog.content;
+
+
+    renderComments(blog);
+
+    openModal("readerModal");
+
+}
+
+
+function renderComments(blog){
+
+    const box =
+        document.getElementById("commentsList");
+
+
+    if(!blog.comments || !blog.comments.length){
+
+        box.innerHTML=
+            `<p style="color:var(--muted)">
+                No comments yet. Be the first!
+            </p>`;
+
+        return;
+
+    }
+
+
+    box.innerHTML =
+        blog.comments.map(comment=>`
+
+            <div class="comment">
+
+                <strong>
+                    ${escapeHtml(comment.name)}
+                </strong>
+
+                <div>
+                    ${escapeHtml(comment.text)}
+                </div>
+
+                <small>
+                    ${escapeHtml(comment.date)}
+                </small>
+
+            </div>
+
+        `).join("");
+
+}
+
+
+/* ================= COMMENTS ================= */
+
+function addComment(){
+
+    const user =
+        getCurrentUser();
+
+
+    if(!user){
+
+        closeModal("readerModal");
+
+        openAuth();
+
+        toast(
+            "Please login to comment.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const input =
+        document.getElementById("commentInput");
+
+    const text =
+        input.value.trim();
+
+
+    if(!text){
+
+        toast(
+            "Please write a comment.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const blog =
+        blogs.find(b=>b.id===currentBlogId);
+
+
+    if(!blog.comments){
+        blog.comments=[];
+    }
+
+
+    blog.comments.push({
+
+        name:user.name,
+
+        text:text,
+
+        date:new Date()
+        .toLocaleDateString(
+            "en-US",
+            {
+                month:"short",
+                day:"numeric",
+                year:"numeric"
+            }
+        )
+
+    });
+
+
+    saveBlogs(blogs);
+
+    input.value="";
+
+    renderComments(blog);
+
+    updateStats();
+
+    toast(
+        "Comment added!",
+        "success"
+    );
+
+}
+
+
+/* ================= LIKES ================= */
+
+function getLikedBlogs(){
+
+    return JSON.parse(
+        localStorage.getItem("luxoraLikedBlogs") || "[]"
+    );
+
+}
+
+
+function saveLikedBlogs(data){
+
+    localStorage.setItem(
+        "luxoraLikedBlogs",
+        JSON.stringify(data)
+    );
+
+}
+
+
+function toggleLike(id){
+
+    const liked =
+        getLikedBlogs();
+
+    const blog =
+        blogs.find(b=>b.id===id);
+
+
+    if(!blog) return;
+
+
+    if(liked.includes(id)){
+
+        blog.likes=Math.max(
+            0,
+            (blog.likes||0)-1
+        );
+
+        liked.splice(
+            liked.indexOf(id),
+            1
+        );
+
+    }else{
+
+        blog.likes=
+            (blog.likes||0)+1;
+
+        liked.push(id);
+
+    }
+
+
+    saveLikedBlogs(liked);
+
+    saveBlogs(blogs);
+
+    renderBlogs();
+
+    updateStats();
+
+}
+
+
+/* ================= AI WRITER ================= */
+
+document
+.getElementById("generateBtn")
+.addEventListener("click",generateAI);
+
+
+function generateAI(){
+
+    const topic =
+        document
+        .getElementById("aiTopic")
+        .value.trim();
+
+    const style =
+        document
+        .getElementById("aiStyle")
+        .value;
+
+    const instructions =
+        document
+        .getElementById("aiInstructions")
+        .value.trim();
+
+
+    if(!topic){
+
+        toast(
+            "Please enter a topic first.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const btn =
+        document.getElementById("generateBtn");
+
+
+    btn.disabled=true;
+
+    btn.innerHTML=
+        `<span class="loader"></span>
+         Generating...`;
+
+
+    setTimeout(()=>{
+
+        const title =
+            generateTitle(topic,style);
+
+
+        const content =
+            generateContent(
+                topic,
+                style,
+                instructions
+            );
+
+
+        generatedBlog={
+            title,
+            content,
+            topic
+        };
+
+
+        document
+        .getElementById("generatedTitle")
+        .textContent=title;
+
+        document
+        .getElementById("generatedContent")
+        .textContent=content;
+
+
+        document
+        .getElementById("aiOutput")
+        .classList.add("show");
+
+
+        btn.disabled=false;
+
+        btn.innerHTML=
+            `<i class="fas fa-sparkles"></i>
+             Generate Blog`;
+
+
+        toast(
+            "Blog generated successfully!",
+            "success"
+        );
+
+    },1200);
+
+}
+
+
+function generateTitle(topic,style){
+
+    const titles={
+
+        professional:
+            `${topic}: A Modern Guide`,
+
+        friendly:
+            `Everything You Should Know About ${topic}`,
+
+        creative:
+            `The Future Begins With ${topic}`,
+
+        educational:
+            `Understanding ${topic}: A Complete Guide`
+
+    };
+
+
+    return titles[style] ||
+        `${topic}: A Complete Guide`;
+
+}
+
+
+function generateContent(
+    topic,
+    style,
+    instructions
+){
+
+    return `Introduction
+
+${topic} is becoming an increasingly important topic in today's rapidly changing digital world. Understanding its fundamentals can help individuals and organizations make better decisions.
+
+Why It Matters
+
+The importance of ${topic} comes from the way it can influence productivity, innovation and everyday experiences. As technology and society continue to evolve, learning about this subject can provide useful knowledge and practical opportunities.
+
+Key Points
+
+First, it is important to understand the basic concepts behind ${topic}. A strong foundation makes it easier to explore more advanced ideas.
+
+Second, practical experience is valuable. Reading about a subject is useful, but applying the knowledge to real-world situations creates deeper understanding.
+
+Third, continuous learning matters. New tools, techniques and ideas appear regularly, so staying updated is an important part of long-term growth.
+
+Practical Applications
+
+There are many ways ${topic} can be applied. Students can use the knowledge for academic projects, developers can build useful applications, and businesses can explore new ways to improve their operations.
+
+Conclusion
+
+${topic} represents an area with significant potential for learning and innovation. By understanding the fundamentals and applying them through practical projects, people can develop useful skills and discover new opportunities.
+
+Writing style: ${style}.
+${instructions ? "Additional instructions: " + instructions : ""}`;
+}
+
+
+/* ================= PUBLISH AI BLOG ================= */
+
+function publishGeneratedBlog(){
+
+    if(!generatedBlog){
+
+        toast(
+            "Generate a blog first.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const user =
+        getCurrentUser();
+
+
+    if(!user){
+
+        openAuth();
+
+        toast(
+            "Login to publish your generated blog.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    blogs.unshift({
+
+        id:Date.now(),
+
+        title:generatedBlog.title,
+
+        category:"Technology",
+
+        author:user.name,
+
+        date:new Date()
+        .toLocaleDateString(
+            "en-US",
+            {
+                month:"long",
+                day:"numeric",
+                year:"numeric"
+            }
+        ),
+
+        image:
+        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85",
+
+        excerpt:
+        generatedBlog.content
+        .substring(0,150)+"...",
+
+        content:generatedBlog.content,
+
+        likes:0,
+
+        comments:[]
+
+    });
+
+
+    saveBlogs(blogs);
+
+    renderBlogs();
+
+    updateStats();
+
+
+    document
+    .getElementById("aiOutput")
+    .classList.remove("show");
+
+
+    document
+    .getElementById("aiTopic")
+    .value="";
+
+
+    generatedBlog=null;
+
+
+    document
+    .getElementById("blogs")
+    .scrollIntoView();
+
+
+    toast(
+        "Your blog has been published!",
+        "success"
+    );
+
+}
+
+
+/* ================= ADMIN ================= */
+
+function showAdmin(){
+
+    isAdmin=true;
+
+    document
+    .getElementById("adminPanel")
+    .classList.add("show");
+
+    renderAdmin();
+
+    document
+    .getElementById("adminPanel")
+    .scrollIntoView();
+
+}
+
+
+function logoutAdmin(){
+
+    isAdmin=false;
+
+    localStorage.removeItem("luxoraAdmin");
+
+    document
+    .getElementById("adminPanel")
+    .classList.remove("show");
+
+    toast(
+        "Admin mode closed.",
+        "success"
+    );
+
+}
+
+
+function renderAdmin(){
+
+    if(!isAdmin) return;
+
+
+    const body =
+        document.getElementById("adminTableBody");
+
+
+    body.innerHTML =
+        blogs.map(blog=>`
+
+        <tr>
+
+            <td>
+                <strong>
+                    ${escapeHtml(blog.title)}
+                </strong>
+            </td>
+
+            <td>
+                ${escapeHtml(blog.category)}
+            </td>
+
+            <td>
+                ${escapeHtml(blog.author)}
+            </td>
+
+            <td>
+                ${blog.likes || 0}
+            </td>
+
+            <td>
+
+                <div class="admin-actions">
+
+                    <button
+                        class="btn btn-light btn-small"
+                        onclick="openReader(${blog.id})"
+                    >
+                        <i class="fas fa-eye"></i>
+                    </button>
+
+                    <button
+                        class="btn btn-danger btn-small"
+                        onclick="deleteBlog(${blog.id})"
+                    >
+                        <i class="fas fa-trash"></i>
+                    </button>
+
+                </div>
+
+            </td>
+
+        </tr>
+
+        `).join("");
+
+
+    updateStats();
+
+}
+
+
+function deleteBlog(id){
+
+    const blog =
+        blogs.find(b=>b.id===id);
+
+
+    if(!blog) return;
+
+
+    if(!confirm(
+        `Delete "${blog.title}"?`
+    )) return;
+
+
+    blogs =
+        blogs.filter(
+            b=>b.id!==id
+        );
+
+
+    saveBlogs(blogs);
+
+    renderBlogs();
+
+    renderAdmin();
+
+    updateStats();
+
+    toast(
+        "Blog deleted.",
+        "success"
+    );
+
+}
+
+
+/* ================= CREATE BLOG ================= */
+
+function openCreateBlog(){
+
+    openModal("createBlogModal");
+
+}
+
+
+document
+.getElementById("createBlogForm")
+.addEventListener("submit",(e)=>{
+
+    e.preventDefault();
+
+
+    const title =
+        document
+        .getElementById("blogTitle")
+        .value.trim();
+
+    const category =
+        document
+        .getElementById("blogCategory")
+        .value;
+
+    const image =
+        document
+        .getElementById("blogImage")
+        .value.trim();
+
+    const content =
+        document
+        .getElementById("blogContent")
+        .value.trim();
+
+
+    const user =
+        getCurrentUser();
+
+
+    const author =
+        user
+        ? user.name
+        : "Luxora Admin";
+
+
+    blogs.unshift({
+
+        id:Date.now(),
+
+        title,
+
+        category,
+
+        author,
+
+        date:new Date()
+        .toLocaleDateString(
+            "en-US",
+            {
+                month:"long",
+                day:"numeric",
+                year:"numeric"
+            }
+        ),
+
+        image:
+            image ||
+            "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=85",
+
+        excerpt:
+            content.substring(0,150)+"...",
+
+        content,
+
+        likes:0,
+
+        comments:[]
+
+    });
+
+
+    saveBlogs(blogs);
+
+    renderBlogs();
+
+    renderAdmin();
+
+    updateStats();
+
+    closeModal("createBlogModal");
+
+    e.target.reset();
+
+
+    toast(
+        "Blog published successfully!",
+        "success"
+    );
+
+});
+
+
+/* ================= STATS ================= */
+
+function updateStats(){
+
+    const users =
+        getUsers();
+
+
+    const totalLikes =
+        blogs.reduce(
+            (sum,b)=>sum+(b.likes||0),
+            0
+        );
+
+
+    const totalComments =
+        blogs.reduce(
+            (sum,b)=>
+                sum+(b.comments?.length||0),
+            0
+        );
+
+
+    document
+    .getElementById("heroBlogs")
+    .textContent=blogs.length;
+
+
+    document
+    .getElementById("heroUsers")
+    .textContent=users.length;
+
+
+    document
+    .getElementById("adminBlogs")
+    .textContent=blogs.length;
+
+
+    document
+    .getElementById("adminUsers")
+    .textContent=users.length;
+
+
+    document
+    .getElementById("adminLikes")
+    .textContent=totalLikes;
+
+
+    document
+    .getElementById("adminComments")
+    .textContent=totalComments;
+
+}
+
+
+/* ================= TOAST ================= */
+
+function toast(message,type="success"){
+
+    const container =
+        document.getElementById("toastContainer");
+
+
+    const element =
+        document.createElement("div");
+
+
+    const icon =
+        type==="error"
+        ? "fa-circle-exclamation"
+        : "fa-circle-check";
+
+
+    element.className="toast";
+
+
+    element.innerHTML=`
+
+        <i class="fas ${icon}"></i>
+
+        <span>
+            ${escapeHtml(message)}
+        </span>
+
+    `;
+
+
+    container.appendChild(element);
+
+
+    setTimeout(()=>{
+
+        element.style.opacity="0";
+
+        element.style.transform=
+            "translateX(50px)";
+
+        setTimeout(
+            ()=>element.remove(),
+            300
+        );
+
+    },3000);
+
+}
+
+
+/* ================= HELPERS ================= */
+
+function getInitials(name){
+
+    return name
+        .split(" ")
+        .slice(0,2)
+        .map(
+            word=>word.charAt(0)
+        )
+        .join("")
+        .toUpperCase();
+
+}
+
+
+function escapeHtml(value){
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        String(value ?? "");
+
+    return div.innerHTML;
+
+}
+
+
+function safeImage(url){
+
+    if(
+        typeof url!=="string" ||
+        !/^https?:\/\//i.test(url)
+    ){
+
+        return "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=85";
+
+    }
+
+    return url;
+
+}
+
+
+/* ================= ADMIN SESSION ================= */
+
+if(
+    localStorage.getItem("luxoraAdmin")==="true"
+){
+
+    isAdmin=true;
+
+    showAdmin();
+
+}
+
+
+/* ================= ESC KEY ================= */
+
+document.addEventListener("keydown",(e)=>{
+
+    if(e.key==="Escape"){
+
+        document
+        .querySelectorAll(".modal.show")
+        .forEach(modal=>{
+            modal.classList.remove("show");
+        });
+
+    }
+
+});
+
+
+/* ================= SMOOTH NAVIGATION ================= */
+
+document
+.querySelectorAll(".nav-links a")
+.forEach(link=>{
+
+    link.addEventListener("click",()=>{
+
+        document
+        .getElementById("navLinks")
+        .classList.remove("show");
+
+    });
+
+});
+
+
+</script>
+
+</body>
+</html>
+```
